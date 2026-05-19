@@ -1,5 +1,7 @@
 package ControladorCode;
 
+import java.util.Scanner;
+
 public class controlador {
 
     public static void main(String[] args) {
@@ -10,23 +12,29 @@ public class controlador {
         serieDoWhile();
         serieWhile();
 
-        //  Fibonacci con signos
+        // Fibonacci con signos
         s2For();
         s2While();
         s2DoWhile();
-        // Imprimir cuadrado
+
+        // Cuadrado
         EjecutarCuadrado();
+
         // Contar letras únicas
         EjecutarContarLetrasUnicas();
+
         // Iniciales en Matrices
         Ejecutariniciales();
-        // Barra Carga 
+
+        // Barra de carga
         EjecutarbarraCarga();
-        
+
         // Suma recursiva
         EjecutarsumaRecu();
-        // Automatas 
+
+        // Automatas
         Ejecutarautomata();
+        Ejecutarautomata2(); // 🔥 tu nuevo autómata
     }
 
     public static void ejecutarFigura() {
@@ -61,23 +69,23 @@ public class controlador {
     public static void s2DoWhile() {
         SerieSum.imprimirSerieDoWhile(10);
     }
-    // Cuadrado
 
+    // Cuadrado
     public static void EjecutarCuadrado() {
         cuadrado.imprimirFigura(10);
     }
 
-    // CAMBIA — > Contar letras únicas
+    // Contar letras únicas
     public static void EjecutarContarLetrasUnicas() {
-    ContarLetras.ContarLetrasUnicas("ballena");  // frase definida aquí
+        ContarLetras.ContarLetrasUnicas("ballena");
     }
 
-    // Iniciales en Matrices
+    // Iniciales en matrices
     public static void Ejecutariniciales() {
         iniciales.imprimiIniciales(10, '*');
     }
 
-    // simulacion de barra de carga
+    // Barra de carga
     public static void EjecutarbarraCarga() {
         barraCarga.simularCarga('*');
     }
@@ -87,8 +95,20 @@ public class controlador {
         sumaRecu.imprimirSuma(5, 3);
     }
 
-    // Automata 
+    // Automata viejo
     public static void Ejecutarautomata() {
         automata.probarCadenas();
+    }
+
+    // automata 
+    public static void Ejecutarautomata2() {
+
+        automata2 a = new automata2();
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("\nAUTOMATA 2 - INGRESE SECUENCIA (ej: 5 10 25 enter):");
+
+        a.validarPalabra(sc);
     }
 }
