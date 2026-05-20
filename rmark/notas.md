@@ -208,6 +208,30 @@ revisamos algunos comandos de:
 - Tipos de scanners 
 - ![alt text](image-1.png)
 
+## Class XVI: Propiedades y métodos 
+- Reconocimiento entre lo que es un método y una propiedad 
+- Metodo: Procesos primarios o secundarios
+- Propiedades: pueden establecerse como primitivas o como compuestas
+- Ejemplificaciones de proceso Git
+- Lógica y Manejo de Controlador
 
+## Class XVII: Ejemplificación 
+- Uso de los estados y tipos de métodos de manera práctica 
+- Cambios entre el "Private" "Public" "Protected"
+- uso de la manera de métodos para cambios entre el código 
+- Validaciones en el método 
+- Explicación breve de los autómatas y sus gráfos
+- Asignación de variable y voluntad de cambio 
+
+## Class XVIII: Repartición
+- Repartición Nota total
+- 4p Deber individual y Grupal (Revisión en Git con su diagrama de Flujo, trace, etc) 
+- 2p Ws (Actividad en clase)
+- 2p md Apuntes (Cuaderno)
+- 6p Proyecto (Una app en grupo en consola)
+- 4p Exámen Papel y Lapiz 
+- 2p(2h) (codificacion hasta las 6 de la tarde )
+- Diagrama de Flujo (Aplicación y Construcción)
+- Estados concretos de un Autómata
 
 
