@@ -23,7 +23,7 @@ public class Controlador {
         boolean salir = false;
         while (!salir) {
             System.out.println("\n=================================");
-            System.out.println("       SISTEMA DE ACCESO         ");
+            System.out.println("       TUgamesTI         ");
             System.out.println("=================================");
             System.out.println("1. Iniciar Sesión (Login)");
             System.out.println("2. Registrarse");
