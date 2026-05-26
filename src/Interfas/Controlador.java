@@ -23,7 +23,7 @@ public class Controlador {
         boolean salir = false;
         while (!salir) {
             System.out.println("\n=================================");
-            System.out.println("       TUgamesTI         ");
+            System.out.println("           TUgamesTI         ");
             System.out.println("=================================");
             System.out.println("1. Iniciar Sesión (Login)");
             System.out.println("2. Registrarse");
@@ -46,6 +46,7 @@ public class Controlador {
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
         }
+        
     }
 
     private void login() {
