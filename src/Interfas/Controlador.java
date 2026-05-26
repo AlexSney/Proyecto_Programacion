@@ -33,12 +33,18 @@ public class Controlador {
             String opcion = scanner.nextLine();
             switch (opcion) {
                 case "1":
+                Animaciones animacion = new Animaciones();
+                animacion.mostrarCarga(100);
                     login();
                     break;
                 case "2":
+                Animaciones animacion2 = new Animaciones();
+                animacion2.mostrarCarga(100);
                     registrar();
                     break;
                 case "3":
+                Animaciones animacion3 = new Animaciones();
+                animacion3.mostrarCarga(100);
                     salir = true;
                     System.out.println("\nPrograma finalizado correctamente.");
                     break;
