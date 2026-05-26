@@ -1,29 +1,36 @@
 package Interfas;
-import java.util.HashMap;
-import java.util.Map;
+
+import CatalogoDeJuegosModels.User;
 import java.util.Scanner;
+import servicios.storeservicios;
 
 public class Controlador {
-    private Map<String, String> usuarios;
-    private Scanner scanner;
-    private String usuarioLogeado;
 
-    
+    private Scanner scanner;
+
+    private User usuario;
+
+    private storeservicios tienda;
+
     public Controlador() {
-        usuarios = new HashMap<>();
+
         scanner = new Scanner(System.in);
-        usuarioLogeado = null;
-/**
-     *Aqui van a crear sus usuarios y contraseñas para que puedan iniciar sesión, pueden agregar los que quieran, pero al menos deben agregar uno para poder probar el sistema de login. 
-     */
-        usuarios.put("Elpapu", "1234");
+
+        tienda = new storeservicios();
+
+        usuario = new User(
+                "Elpapu",
+                "1234",
+                100);
     }
 
     public void iniciar() {
+
         boolean salir = false;
+
         while (!salir) {
             System.out.println("\n=================================");
-            System.out.println("           TUgamesTI         ");
+            System.out.println("       SISTEMA DE ACCESO         ");
             System.out.println("=================================");
             System.out.println("1. Iniciar Sesión (Login)");
             System.out.println("2. Registrarse");
@@ -31,22 +38,52 @@ public class Controlador {
             System.out.print("Seleccione una opción: ");
 
             String opcion = scanner.nextLine();
+
             switch (opcion) {
+
                 case "1":
-                    login();
+
+                    tienda.mostrarCatalogo();
                     break;
+
                 case "2":
-                    registrar();
+
+                    System.out.print(
+                            "Nombre del juego: ");
+
+                    String nombre =
+                            scanner.nextLine();
+
+                    tienda.comprarJuego(
+                            usuario,
+                            nombre);
+
                     break;
+
                 case "3":
-                    salir = true;
-                    System.out.println("\nPrograma finalizado correctamente.");
+
+                    System.out.println(
+                            "Saldo: $" +
+                            usuario.getSaldo());
+
                     break;
+
+                case "4":
+
+                    System.out.println(
+                            usuario.getBiblioteca());
+
+                    break;
+
+                case "5":
+
+                    salir = true;
+                    break;
+
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
         }
-        
     }
 
     private void login() {
