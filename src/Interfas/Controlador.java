@@ -42,41 +42,14 @@ public class Controlador {
             switch (opcion) {
 
                 case "1":
-
-                    tienda.mostrarCatalogo();
+                    login();
                     break;
 
                 case "2":
-
-                    System.out.print(
-                            "Nombre del juego: ");
-
-                    String nombre =
-                            scanner.nextLine();
-
-                    tienda.comprarJuego(
-                            usuario,
-                            nombre);
-
+                    registrar();
                     break;
 
                 case "3":
-
-                    System.out.println(
-                            "Saldo: $" +
-                            usuario.getSaldo());
-
-                    break;
-
-                case "4":
-
-                    System.out.println(
-                            usuario.getBiblioteca());
-
-                    break;
-
-                case "5":
-
                     salir = true;
                     break;
 
