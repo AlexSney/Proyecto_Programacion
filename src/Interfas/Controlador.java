@@ -1,27 +1,49 @@
 package Interfas;
+
+import moduloAdmin.AdminControlador;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Controlador {
+
     private Map<String, String> usuarios;
+    private Map<String, Double> saldos;
+
     private Scanner scanner;
     private String usuarioLogeado;
 
-    
+    private AdminControlador admin;
+
     public Controlador() {
+
         usuarios = new HashMap<>();
+        saldos = new HashMap<>();
+
         scanner = new Scanner(System.in);
+
+        admin = new AdminControlador(usuarios, saldos);
+
         usuarioLogeado = null;
-/**
-     *Aqui van a crear sus usuarios y contraseñas para que puedan iniciar sesión, pueden agregar los que quieran, pero al menos deben agregar uno para poder probar el sistema de login. 
-     */
+
+        /**
+         * Aqui van a crear sus usuarios y contraseñas
+         * para que puedan iniciar sesión.
+         */
+
         usuarios.put("Elpapu", "1234");
+        usuarios.put("Admin", "admin");
+
+        saldos.put("Elpapu", 150.0);
+        saldos.put("Admin", 9999.0);
     }
 
     public void iniciar() {
+
         boolean salir = false;
+
         while (!salir) {
+
             System.out.println("\n=================================");
             System.out.println("       SISTEMA DE ACCESO         ");
             System.out.println("=================================");
@@ -31,17 +53,22 @@ public class Controlador {
             System.out.print("Seleccione una opción: ");
 
             String opcion = scanner.nextLine();
+
             switch (opcion) {
+
                 case "1":
                     login();
                     break;
+
                 case "2":
                     registrar();
                     break;
+
                 case "3":
                     salir = true;
                     System.out.println("\nPrograma finalizado correctamente.");
                     break;
+
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
@@ -49,58 +76,109 @@ public class Controlador {
     }
 
     private void login() {
+
         System.out.println("\n--- INICIO DE SESIÓN ---");
+
         System.out.print("Usuario: ");
         String user = scanner.nextLine();
+
         System.out.print("Contraseña: ");
         String pass = scanner.nextLine();
 
-        if (usuarios.containsKey(user) && usuarios.get(user).equals(pass)) {
+        if (usuarios.containsKey(user)
+                && usuarios.get(user).equals(pass)) {
+
             usuarioLogeado = user;
-            System.out.println("\n¡Inicio de sesión exitoso! Bienvenido, " + usuarioLogeado + ".");
-            
-            
-            menuLogeado();
-            
+
+            System.out.println(
+                    "\n¡Inicio de sesión exitoso! Bienvenido, "
+                            + usuarioLogeado + ".");
+
+            // Si es admin entra al panel admin
+            if (usuarioLogeado.equals("Admin")) {
+
+                admin.menuAdmin();
+
+            } else {
+
+                menuLogeado();
+            }
+
         } else {
-            System.out.println("\nError: Usuario o contraseña incorrectos.");
+
+            System.out.println(
+                    "\nError: Usuario o contraseña incorrectos.");
         }
     }
 
     private void registrar() {
+
         System.out.println("\n--- REGISTRO DE NUEVO USUARIO ---");
+
         System.out.print("Ingrese nuevo usuario: ");
         String user = scanner.nextLine();
 
         if (usuarios.containsKey(user)) {
+
             System.out.println("Error: El usuario ya existe.");
             return;
         }
+
         System.out.print("Ingrese contraseña: ");
         String pass = scanner.nextLine();
 
         usuarios.put(user, pass);
-        System.out.println("\n¡Registro completado con éxito! Ya puede iniciar sesión.");
+
+        // saldo inicial
+        saldos.put(user, 100.0);
+
+        System.out.println(
+                "\n¡Registro completado con éxito! Ya puede iniciar sesión.");
     }
 
     private void menuLogeado() {
+
         boolean cerrarSesion = false;
+
         while (!cerrarSesion) {
+
             System.out.println("\n---------------------------------");
-            System.out.println("  SESIÓN ACTIVA: " + usuarioLogeado.toUpperCase());
+            System.out.println(
+                    "  SESIÓN ACTIVA: "
+                            + usuarioLogeado.toUpperCase());
             System.out.println("---------------------------------");
+
             System.out.println("1. Mi Perfil (Ver Datos)");
-            System.out.println("2. Cerrar Sesión");
+            System.out.println("2. Ver Saldo");
+            System.out.println("3. Cerrar Sesión");
+
             System.out.print("Seleccione: ");
 
             String opcion = scanner.nextLine();
+
             if (opcion.equals("1")) {
-                System.out.println("\nPerfil actual: " + usuarioLogeado);
+
+                System.out.println(
+                        "\nPerfil actual: " + usuarioLogeado);
+
             } else if (opcion.equals("2")) {
-                System.out.println("\nCerrando sesión de " + usuarioLogeado + "...");
+
+                System.out.println(
+                        "\nSaldo actual: $"
+                                + String.format("%.2f",
+                                saldos.get(usuarioLogeado)));
+
+            } else if (opcion.equals("3")) {
+
+                System.out.println(
+                        "\nCerrando sesión de "
+                                + usuarioLogeado + "...");
+
                 usuarioLogeado = null;
                 cerrarSesion = true;
+
             } else {
+
                 System.out.println("Opción no válida.");
             }
         }
