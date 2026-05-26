@@ -1,13 +1,4 @@
-/**
- * ╔══════════════════════════════════════════════════════════╗
- * ║         NEXUSGAMES — Plataforma de Distribución          ║
- * ║                    Digital de Videojuegos                 ║
- * ╠══════════════════════════════════════════════════════════╣
- * ║  Arquitectura: MVC + Capas de Servicio                   ║
- * ║  Persistencia: Archivos TXT                              ║
- * ║  Roles: ADMIN / USER                                     ║
- * ╚══════════════════════════════════════════════════════════╝
- */
+
 
 import controllers.AdminController;
 import controllers.AuthController;
@@ -22,18 +13,7 @@ import utils.FileManager;
 import utils.InputHelper;
 import utils.Printer;
 
-/**
- * Punto de entrada principal de NexusGames.
- *
- * Responsabilidades de App.java:
- *   1. Inicializar los archivos de persistencia
- *   2. Crear los servicios (lógica de negocio)
- *   3. Crear los controladores (navegación y UI)
- *   4. Manejar el flujo principal: login → menú según rol → logout
- *
- * NOTA: App.java NO contiene lógica de negocio.
- *       Solo conecta los componentes y dirige el flujo.
- */
+
 public class App {
 
     public static void main(String[] args) {

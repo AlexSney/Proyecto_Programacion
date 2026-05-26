@@ -16,12 +16,7 @@ public class Printer {
         limpiarConsola();
         System.out.println();
         System.out.println(LINEA);
-        System.out.println("   ███╗   ██╗███████╗██╗  ██╗██╗   ██╗███████╗");
-        System.out.println("   ████╗  ██║██╔════╝╚██╗██╔╝██║   ██║██╔════╝");
-        System.out.println("   ██╔██╗ ██║█████╗   ╚███╔╝ ██║   ██║███████╗");
-        System.out.println("   ██║╚██╗██║██╔══╝   ██╔██╗ ██║   ██║╚════██║");
-        System.out.println("   ██║ ╚████║███████╗██╔╝ ██╗╚██████╔╝███████║");
-        System.out.println("   ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝");
+       
         System.out.println("              G A M E S  — Plataforma Digital");
         System.out.println(LINEA);
         System.out.println();
