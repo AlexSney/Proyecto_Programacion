@@ -110,7 +110,8 @@ public class Controlador {
                         saldo.mostrarSaldo();
                         break;
                     case 2:
-                        double newSaldo = 150;
+                        System.out.println("Cuanto saldo desea añadir: ");
+                        double newSaldo = scanner.nextDouble();
                         saldo.modificarSaldo(newSaldo, true);
                         break;
                     default:
