@@ -10,7 +10,7 @@ import services.WalletService;
 import utils.FileManager;
 import utils.InputHelper;
 import utils.Printer;
-import utils.AnimationHelper; // 👈 nuevo import
+import utils.AnimationHelper; 
 
 public class App {
 
