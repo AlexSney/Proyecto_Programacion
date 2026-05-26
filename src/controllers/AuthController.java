@@ -62,7 +62,7 @@ public class AuthController {
     // ── Login ──────────────────────────────────────────────────────────────────
 
     private User menuLogin() {
-        Printer.titulo(" INICIAR SESIÓN");
+        Printer.titulo("🔐 INICIAR SESIÓN");
         String username = InputHelper.leerTexto("   Usuario: ");
         String password = InputHelper.leerTexto("   Contraseña: ");
 
@@ -82,7 +82,7 @@ public class AuthController {
     // ── Registro ───────────────────────────────────────────────────────────────
 
     private void menuRegistro() {
-        Printer.titulo(" CREAR CUENTA");
+        Printer.titulo("📝 CREAR CUENTA");
         String username = InputHelper.leerTexto("   Nuevo usuario: ");
         String password = InputHelper.leerTexto("   Contraseña (mín. 4 caracteres): ");
 

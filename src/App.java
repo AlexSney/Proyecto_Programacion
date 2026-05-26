@@ -71,7 +71,7 @@ public class App {
         boolean sesionActiva = true;
 
         while (sesionActiva) {
-            Printer.titulo("NEXUSGAMES — Hola, " + usuario.getUsername() +
+            Printer.titulo("🎮 NEXUSGAMES — Hola, " + usuario.getUsername() +
                            "  |  Saldo: $" + String.format("%.2f", usuario.getSaldo()));
             System.out.println("   [1] Tienda");
             System.out.println("   [2] Mi Biblioteca");

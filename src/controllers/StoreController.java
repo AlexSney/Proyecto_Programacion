@@ -1,4 +1,5 @@
 package controllers;
+
 import models.Game;
 import models.User;
 import services.GameService;
@@ -30,7 +31,7 @@ public class StoreController {
         boolean enTienda = true;
 
         while (enTienda) {
-            Printer.titulo(" TIENDA NEXUSGAMES — Saldo: $" +
+            Printer.titulo("🛒 TIENDA NEXUSGAMES — Saldo: $" +
                            String.format("%.2f", usuario.getSaldo()));
             System.out.println("   [1] Ver catálogo completo");
             System.out.println("   [2] Buscar juego por nombre");
@@ -57,7 +58,7 @@ public class StoreController {
     // ── Ver catálogo ───────────────────────────────────────────────────────────
 
     private void mostrarCatalogo() {
-        Printer.titulo(" CATÁLOGO COMPLETO");
+        Printer.titulo("📋 CATÁLOGO COMPLETO");
         ArrayList<Game> juegos = gameService.getTodosLosJuegos();
 
         if (juegos.isEmpty()) {
@@ -74,7 +75,7 @@ public class StoreController {
     // ── Buscar por nombre ──────────────────────────────────────────────────────
 
     private void buscarJuego() {
-        Printer.titulo(" BUSCAR JUEGO");
+        Printer.titulo("🔍 BUSCAR JUEGO");
         String palabra = InputHelper.leerTexto("   Nombre o palabra clave: ");
 
         if (InputHelper.estaVacio(palabra)) {
@@ -121,7 +122,7 @@ public class StoreController {
     // ── Comprar juego ──────────────────────────────────────────────────────────
 
     private void comprarJuego(User usuario) {
-        Printer.titulo(" COMPRAR JUEGO");
+        Printer.titulo("💳 COMPRAR JUEGO");
         mostrarCatalogoSilencioso();
 
         int id = InputHelper.leerEntero("   ID del juego a comprar: ");

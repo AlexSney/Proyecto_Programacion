@@ -37,7 +37,7 @@ public class AdminController {
         boolean enAdmin = true;
 
         while (enAdmin) {
-            Printer.titulo(" PANEL DE ADMINISTRACIÓN — " + admin.getUsername());
+            Printer.titulo("👑 PANEL DE ADMINISTRACIÓN — " + admin.getUsername());
             System.out.println("   ── Gestión de juegos ──────────────────");
             System.out.println("   [1] Ver catálogo");
             System.out.println("   [2] Agregar juego");
@@ -74,7 +74,7 @@ public class AdminController {
     // ── Ver catálogo ───────────────────────────────────────────────────────────
 
     private void verCatalogo() {
-        Printer.titulo(" CATÁLOGO DE JUEGOS");
+        Printer.titulo("📋 CATÁLOGO DE JUEGOS");
         ArrayList<Game> juegos = gameService.getTodosLosJuegos();
         if (juegos.isEmpty()) {
             Printer.info("No hay juegos registrados.");
@@ -92,7 +92,7 @@ public class AdminController {
     // ── Agregar juego ──────────────────────────────────────────────────────────
 
     private void agregarJuego() {
-        Printer.titulo(" AGREGAR JUEGO");
+        Printer.titulo("➕ AGREGAR JUEGO");
         String nombre        = InputHelper.leerTexto("   Nombre: ");
         double precio        = InputHelper.leerDecimal("   Precio: $");
         String categoria     = InputHelper.leerTexto("   Categoría: ");
@@ -127,7 +127,7 @@ public class AdminController {
     // ── Modificar stock ────────────────────────────────────────────────────────
 
     private void modificarStock() {
-        Printer.titulo(" MODIFICAR STOCK");
+        Printer.titulo("📦 MODIFICAR STOCK");
         int id         = InputHelper.leerEntero("   ID del juego: ");
         int nuevoStock = InputHelper.leerEntero("   Nuevo stock: ");
 
@@ -141,7 +141,7 @@ public class AdminController {
     // ── Eliminar juego ─────────────────────────────────────────────────────────
 
     private void eliminarJuego() {
-        Printer.titulo(" ELIMINAR JUEGO");
+        Printer.titulo("🗑 ELIMINAR JUEGO");
         int id = InputHelper.leerEntero("   ID del juego a eliminar: ");
 
         String confirmar = InputHelper.leerTexto("   ¿Estás seguro? (s/n): ");
@@ -161,7 +161,7 @@ public class AdminController {
     // ── Ver usuarios ───────────────────────────────────────────────────────────
 
     private void verUsuarios() {
-        Printer.titulo(" USUARIOS REGISTRADOS");
+        Printer.titulo("👥 USUARIOS REGISTRADOS");
         ArrayList<User> usuarios = authService.getTodosLosUsuarios();
         System.out.printf("  %-20s %-10s %-12s%n", "USUARIO", "ROL", "SALDO");
         Printer.linea2();
@@ -177,7 +177,7 @@ public class AdminController {
     // ── Ver ventas ─────────────────────────────────────────────────────────────
 
     private void verVentas() {
-        Printer.titulo(" HISTORIAL DE VENTAS");
+        Printer.titulo("💵 HISTORIAL DE VENTAS");
         ArrayList<Purchase> ventas = purchaseService.getTodasLasCompras();
 
         if (ventas.isEmpty()) {
@@ -205,7 +205,7 @@ public class AdminController {
      * cuántas veces se vendió cada juego.
      */
     private void verEstadisticas() {
-        Printer.titulo(" ESTADÍSTICAS DEL SISTEMA");
+        Printer.titulo("📊 ESTADÍSTICAS DEL SISTEMA");
 
         ArrayList<Purchase> ventas  = purchaseService.getTodasLasCompras();
         ArrayList<User>     usuarios = authService.getTodosLosUsuarios();
