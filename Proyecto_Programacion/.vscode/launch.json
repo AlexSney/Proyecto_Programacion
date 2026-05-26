@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Sistema de Acceso",
+            "request": "launch",
+            "mainClass": "Interfas.App",
+            "classPaths": ["${workspaceFolder}/Proyecto_Programacion/bin"],
+            "sourcePaths": ["${workspaceFolder}/Proyecto_Programacion/src"]
+        }
+    ]
+}
