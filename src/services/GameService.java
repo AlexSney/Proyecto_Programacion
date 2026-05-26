@@ -50,7 +50,7 @@ public class GameService {
         juegos.add(new Game(nextId++, "God of War Ragnarok", 69.99, "Accion",   10, "M"));
         juegos.add(new Game(nextId++, "FIFA 25",             49.99, "Deportes", 30, "E"));
         juegos.add(new Game(nextId++, "Hollow Knight",       14.99, "Indie",    99, "E"));
-        juegos.add(new Game(nextId++, "Cyberpunk 2077",      39.99, "RPG",       8, "M"));
+        juegos.add(new Game(nextId++, "Cyberpunk 2077",      39.99, "RPG",      2077, "M"));
         juegos.add(new Game(nextId++, "Among Us",             4.99, "Social",   99, "E"));
         juegos.add(new Game(nextId++, "The Witcher 3",        29.99, "RPG",     20, "M"));
         FileManager.guardarJuegos(juegos);
