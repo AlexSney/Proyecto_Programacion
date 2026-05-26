@@ -1,5 +1,3 @@
-
-
 import controllers.AdminController;
 import controllers.AuthController;
 import controllers.LibraryController;
@@ -13,41 +11,38 @@ import utils.FileManager;
 import utils.InputHelper;
 import utils.Printer;
 
-
 public class App {
 
+    /**
+     * @parami metodo main
+     * @parami descripcion punto de inicio del sistema NexusGames
+     * @parami flujo inicializa persistencia, servicios, controladores y ejecuta el loop principal
+     */
     public static void main(String[] args) {
 
-        // ── 1. Inicializar persistencia ────────────────────────────────────────
         FileManager.inicializar();
 
-        // ── 2. Crear servicios ─────────────────────────────────────────────────
         AuthService     authService     = new AuthService();
         GameService     gameService     = new GameService();
         WalletService   walletService   = new WalletService(authService);
         PurchaseService purchaseService = new PurchaseService(walletService, gameService);
 
-        // ── 3. Crear controladores ─────────────────────────────────────────────
         AuthController    authController    = new AuthController(authService);
         StoreController   storeController   = new StoreController(gameService, purchaseService);
         LibraryController libraryController = new LibraryController(purchaseService, walletService);
         AdminController   adminController   = new AdminController(gameService, authService, purchaseService);
 
-        // ── 4. Flujo principal ─────────────────────────────────────────────────
         boolean ejecutando = true;
 
         while (ejecutando) {
 
-            // Mostrar menú de login/registro y esperar a que el usuario inicie sesión
             User usuarioActual = authController.menuAutenticacion();
 
-            // Si retorna null, el usuario eligió "Salir"
             if (usuarioActual == null) {
                 ejecutando = false;
                 continue;
             }
 
-            // Redirigir según el rol del usuario (autómata de roles)
             if (usuarioActual.esAdmin()) {
                 menuAdmin(usuarioActual, storeController, libraryController,
                           adminController);
@@ -56,14 +51,13 @@ public class App {
             }
         }
 
-        System.out.println("\n  ═══ NexusGames cerrado. ¡Hasta la próxima! ═══\n");
+        System.out.println("\n  ═══ NexusGames cerrado. Hasta la proxima! ═══\n");
     }
 
-    // ── Menú del usuario normal ────────────────────────────────────────────────
-
     /**
-     * Autómata principal para usuarios con rol USER.
-     * Se mantiene en bucle hasta que el usuario cierre sesión.
+     * @parami metodo menuUsuario
+     * @parami descripcion menu principal para usuarios normales
+     * @parami flujo permite acceder a tienda, biblioteca o cerrar sesion
      */
     private static void menuUsuario(User usuario,
                                     StoreController   storeCtrl,
@@ -84,22 +78,21 @@ public class App {
                 case 1: storeCtrl.mostrarMenuTienda(usuario);       break;
                 case 2: libraryCtrl.mostrarMenuBiblioteca(usuario);  break;
                 case 0:
-                    Printer.info("Sesión cerrada. ¡Hasta pronto!");
+                    Printer.info("Sesion cerrada. Hasta pronto!");
                     InputHelper.pausar();
                     sesionActiva = false;
                     break;
                 default:
-                    Printer.aviso("Opción no válida.");
+                    Printer.aviso("Opcion no valida.");
                     InputHelper.pausar();
             }
         }
     }
 
-    // ── Menú del administrador ─────────────────────────────────────────────────
-
     /**
-     * Autómata principal para usuarios con rol ADMIN.
-     * Tiene acceso a la tienda, biblioteca Y al panel admin.
+     * @parami metodo menuAdmin
+     * @parami descripcion menu para administradores
+     * @parami flujo acceso a tienda, biblioteca y panel de administracion
      */
     private static void menuAdmin(User admin,
                                   StoreController   storeCtrl,
@@ -122,12 +115,12 @@ public class App {
                 case 2: libraryCtrl.mostrarMenuBiblioteca(admin);    break;
                 case 3: adminCtrl.mostrarMenuAdmin(admin);           break;
                 case 0:
-                    Printer.info("Sesión admin cerrada.");
+                    Printer.info("Sesion admin cerrada.");
                     InputHelper.pausar();
                     sesionActiva = false;
                     break;
                 default:
-                    Printer.aviso("Opción no válida.");
+                    Printer.aviso("Opcion no valida.");
                     InputHelper.pausar();
             }
         }
