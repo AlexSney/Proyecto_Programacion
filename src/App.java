@@ -10,15 +10,19 @@ import services.WalletService;
 import utils.FileManager;
 import utils.InputHelper;
 import utils.Printer;
+import utils.AnimationHelper; // 👈 nuevo import
 
 public class App {
 
     /**
      * @parami metodo main
      * @parami descripcion punto de inicio del sistema NexusGames
-     * @parami flujo inicializa persistencia, servicios, controladores y ejecuta el loop principal
+     * @parami flujo inicializa sistema y controla ejecucion principal
      */
     public static void main(String[] args) {
+
+        // animacion inicio
+        AnimationHelper.barraCarga("Iniciando NexusGames");
 
         FileManager.inicializar();
 
@@ -43,21 +47,27 @@ public class App {
                 continue;
             }
 
+            // animacion despues de login
+            AnimationHelper.puntosCarga("Cargando datos del usuario");
+
             if (usuarioActual.esAdmin()) {
+                AnimationHelper.barraCarga("Accediendo como administrador");
                 menuAdmin(usuarioActual, storeController, libraryController,
                           adminController);
             } else {
+                AnimationHelper.barraCarga("Accediendo como usuario");
                 menuUsuario(usuarioActual, storeController, libraryController);
             }
         }
 
+        AnimationHelper.puntosCarga("Cerrando sistema");
         System.out.println("\n  ═══ NexusGames cerrado. Hasta la proxima! ═══\n");
     }
 
     /**
      * @parami metodo menuUsuario
      * @parami descripcion menu principal para usuarios normales
-     * @parami flujo permite acceder a tienda, biblioteca o cerrar sesion
+     * @parami flujo tienda biblioteca cerrar sesion
      */
     private static void menuUsuario(User usuario,
                                     StoreController   storeCtrl,
@@ -75,9 +85,16 @@ public class App {
             int opcion = InputHelper.leerEntero("   Elige una opción: ");
 
             switch (opcion) {
-                case 1: storeCtrl.mostrarMenuTienda(usuario);       break;
-                case 2: libraryCtrl.mostrarMenuBiblioteca(usuario);  break;
+                case 1:
+                    AnimationHelper.puntosCarga("Abriendo tienda");
+                    storeCtrl.mostrarMenuTienda(usuario);
+                    break;
+                case 2:
+                    AnimationHelper.puntosCarga("Cargando biblioteca");
+                    libraryCtrl.mostrarMenuBiblioteca(usuario);
+                    break;
                 case 0:
+                    AnimationHelper.puntosCarga("Cerrando sesion");
                     Printer.info("Sesion cerrada. Hasta pronto!");
                     InputHelper.pausar();
                     sesionActiva = false;
@@ -92,7 +109,7 @@ public class App {
     /**
      * @parami metodo menuAdmin
      * @parami descripcion menu para administradores
-     * @parami flujo acceso a tienda, biblioteca y panel de administracion
+     * @parami flujo tienda biblioteca panel admin cerrar sesion
      */
     private static void menuAdmin(User admin,
                                   StoreController   storeCtrl,
@@ -111,10 +128,20 @@ public class App {
             int opcion = InputHelper.leerEntero("   Elige una opción: ");
 
             switch (opcion) {
-                case 1: storeCtrl.mostrarMenuTienda(admin);          break;
-                case 2: libraryCtrl.mostrarMenuBiblioteca(admin);    break;
-                case 3: adminCtrl.mostrarMenuAdmin(admin);           break;
+                case 1:
+                    AnimationHelper.puntosCarga("Abriendo tienda");
+                    storeCtrl.mostrarMenuTienda(admin);
+                    break;
+                case 2:
+                    AnimationHelper.puntosCarga("Cargando biblioteca");
+                    libraryCtrl.mostrarMenuBiblioteca(admin);
+                    break;
+                case 3:
+                    AnimationHelper.puntosCarga("Entrando al panel admin");
+                    adminCtrl.mostrarMenuAdmin(admin);
+                    break;
                 case 0:
+                    AnimationHelper.puntosCarga("Cerrando sesion admin");
                     Printer.info("Sesion admin cerrada.");
                     InputHelper.pausar();
                     sesionActiva = false;
