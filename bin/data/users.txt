@@ -1,2 +1,0 @@
-admin|admin123|10004.0|ADMIN
-jhoel|1234|0.0|USER

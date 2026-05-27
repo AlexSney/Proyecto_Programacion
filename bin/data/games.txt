@@ -1,8 +1,0 @@
-1|Elden Ring|59.99|RPG|15|M
-2|Minecraft|26.99|Sandbox|50|E
-3|God of War Ragnarok|69.99|Accion|10|M
-4|FIFA 25|49.99|Deportes|30|E
-5|Hollow Knight|14.99|Indie|99|E
-6|Cyberpunk 2077|39.99|RPG|8|M
-7|Among Us|4.99|Social|99|E
-8|The Witcher 3|29.99|RPG|20|M
