@@ -56,7 +56,7 @@ public class App {
                           adminController);
             } else {
                 AnimationHelper.barraCarga("Accediendo como usuario");
-                menuUsuario(usuarioActual, storeController, libraryController);
+                menuUsuario(usuarioActual, storeController, libraryController, authController);
             }
         }
 
@@ -70,15 +70,19 @@ public class App {
      * @parami flujo tienda biblioteca cerrar sesion
      */
     private static void menuUsuario(User usuario,
-                                    StoreController   storeCtrl,
-                                    LibraryController libraryCtrl) {
+                                StoreController   storeCtrl,
+                                LibraryController libraryCtrl,
+                                AuthController    authCtrl) {  // ✅ agrega authCtrl
         boolean sesionActiva = true;
 
         while (sesionActiva) {
-            Printer.titulo("🎮 NEXUSGAMES — Hola, " + usuario.getUsername() +
-                           "  |  Saldo: $" + String.format("%.2f", usuario.getSaldo()));
+            Printer.titulo(" NEXUSGAMES — Hola, " + usuario.getUsername() +
+                       "  |  Saldo: $" + String.format("%.2f", usuario.getSaldo()));
             System.out.println("   [1] Tienda");
             System.out.println("   [2] Mi Biblioteca");
+            System.out.println("   [3] Mi Perfil");           
+            System.out.println("   [4] Cambiar Contraseña");  
+            System.out.println("   [5] Eliminar Cuenta");     
             System.out.println("   [0] Cerrar sesión");
             System.out.println();
 
@@ -93,6 +97,18 @@ public class App {
                     AnimationHelper.puntosCarga("Cargando biblioteca");
                     libraryCtrl.mostrarMenuBiblioteca(usuario);
                     break;
+                case 3:
+                    authCtrl.verPerfil(usuario);              // ✅ nuevo
+                    break;
+                case 4:
+                    authCtrl.cambiarContrasena(usuario);      // ✅ nuevo
+                    break;
+                case 5:
+                    if (authCtrl.eliminarCuenta(usuario)) {   // ✅ nuevo
+                        sesionActiva = false;
+                    }
+                
+                break;
                 case 0:
                     AnimationHelper.puntosCarga("Cerrando sesion");
                     Printer.info("Sesion cerrada. Hasta pronto!");
@@ -105,6 +121,7 @@ public class App {
             }
         }
     }
+    
 
     /**
      * @parami metodo menuAdmin

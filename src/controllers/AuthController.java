@@ -62,7 +62,7 @@ public class AuthController {
     // ── Login ──────────────────────────────────────────────────────────────────
 
     private User menuLogin() {
-        Printer.titulo("🔐 INICIAR SESIÓN");
+        Printer.titulo(" INICIAR SESIÓN");
         String username = InputHelper.leerTexto("   Usuario: ");
         String password = InputHelper.leerTexto("   Contraseña: ");
 
@@ -82,7 +82,7 @@ public class AuthController {
     // ── Registro ───────────────────────────────────────────────────────────────
 
     private void menuRegistro() {
-        Printer.titulo("📝 CREAR CUENTA");
+        Printer.titulo(" CREAR CUENTA");
         String username = InputHelper.leerTexto("   Nuevo usuario: ");
         String password = InputHelper.leerTexto("   Contraseña (mín. 4 caracteres): ");
 
@@ -96,5 +96,73 @@ public class AuthController {
             Printer.error(partes[1]);
         }
         InputHelper.pausar();
+    }
+    // ── Perfil, cambiar contraseña y eliminar cuenta ───────────────────────────
+
+    public void verPerfil(User usuario) {
+    Printer.titulo("👤 MI PERFIL");
+    System.out.println("   Usuario      : " + usuario.getUsername());
+    System.out.println("   Rol          : " + usuario.getRol());
+    System.out.println("   Saldo        : $" + String.format("%.2f", usuario.getSaldo()));
+    // ✅ nuevo
+    String fecha = usuario.getUltimoLogin() != null ? usuario.getUltimoLogin() : "No disponible";
+    System.out.println("   Último login : " + fecha);
+    InputHelper.pausar();
+    }
+
+    public boolean cambiarContrasena(User usuario) {
+    Printer.titulo(" CAMBIAR CONTRASEÑA");
+    String actual = InputHelper.leerTexto("   Contraseña actual: ");
+
+    if (!usuario.getPassword().equals(actual)) {
+        Printer.error("Contraseña incorrecta.");
+        InputHelper.pausar();
+        return false;
+    }
+
+    String nueva    = InputHelper.leerTexto("   Nueva contraseña: ");
+    String confirma = InputHelper.leerTexto("   Confirmar contraseña: ");
+
+    if (!nueva.equals(confirma)) {
+        Printer.error("Las contraseñas no coinciden.");
+        InputHelper.pausar();
+        return false;
+    }
+
+    if (nueva.equals(actual)) {
+        Printer.error("La nueva contraseña debe ser diferente a la actual.");
+        InputHelper.pausar();
+        return false;
+    }
+
+    usuario.setPassword(nueva);
+    authService.actualizarYGuardar();
+    Printer.exito("Contraseña cambiada exitosamente.");
+    InputHelper.pausar();
+    return true;
+    }
+
+    public boolean eliminarCuenta(User usuario) {
+    Printer.titulo(" ELIMINAR CUENTA");
+    Printer.aviso("Esta acción es irreversible.");
+    String pass = InputHelper.leerTexto("   Ingrese su contraseña para confirmar: ");
+
+    if (!usuario.getPassword().equals(pass)) {
+        Printer.error("Contraseña incorrecta. Cuenta no eliminada.");
+        InputHelper.pausar();
+        return false;
+    }
+
+    String confirma = InputHelper.leerTexto("   ¿Está seguro? (si/no): ");
+    if (!confirma.equalsIgnoreCase("si")) {
+        Printer.aviso("Eliminación cancelada.");
+        InputHelper.pausar();
+        return false;
+    }
+
+    authService.eliminarUsuario(usuario);
+    Printer.exito("Cuenta eliminada. Hasta luego.");
+    InputHelper.pausar();
+    return true;
     }
 }

@@ -60,19 +60,17 @@ public class AuthService {
         return "OK:Usuario registrado exitosamente.";
     }
 
-    // ── Login ──────────────────────────────────────────────────────────────────
-
-    /**
-     * Intenta hacer login.
-     *
-     * @return el objeto User si las credenciales son correctas, null si no.
-     */
     public User login(String username, String password) {
         if (username.isEmpty() || password.isEmpty()) return null;
 
         User u = buscarPorUsername(username);
-        if (u != null && u.getPassword().equals(password)) {
-            return u;
+            if (u != null && u.getPassword().equals(password)) {
+            // ✅ guardar fecha de último login
+                String ahora = java.time.LocalDateTime.now()
+                    .format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                u.setUltimoLogin(ahora);
+                FileManager.guardarUsuarios(usuarios);
+        return u;
         }
         return null;
     }
@@ -101,5 +99,10 @@ public class AuthService {
     /** Actualiza el saldo de un usuario y guarda en el archivo. */
     public void actualizarYGuardar() {
         FileManager.guardarUsuarios(usuarios);
+    }
+
+    public void eliminarUsuario(User usuario) {
+    usuarios.remove(usuario);
+    FileManager.guardarUsuarios(usuarios);
     }
 }

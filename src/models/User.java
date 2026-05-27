@@ -59,4 +59,10 @@ public class User {
     public String toString() {
         return "[" + rol + "] " + username + " — Saldo: $" + String.format("%.2f", saldo);
     }
+
+    private String ultimoLogin;  // ✅ nuevo atributo
+
+    // en los getters/setters agrega:
+    public String getUltimoLogin()          { return ultimoLogin; }
+    public void   setUltimoLogin(String f)  { this.ultimoLogin = f; }
 }
