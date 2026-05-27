@@ -65,7 +65,7 @@ public class AuthService {
 
         User u = buscarPorUsername(username);
             if (u != null && u.getPassword().equals(password)) {
-            // ✅ guardar fecha de último login
+            //  guardar fecha de último login
                 String ahora = java.time.LocalDateTime.now()
                     .format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
                 u.setUltimoLogin(ahora);

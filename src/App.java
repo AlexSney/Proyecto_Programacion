@@ -72,7 +72,7 @@ public class App {
     private static void menuUsuario(User usuario,
                                 StoreController   storeCtrl,
                                 LibraryController libraryCtrl,
-                                AuthController    authCtrl) {  // ✅ agrega authCtrl
+                                AuthController    authCtrl) {  //  agrega authCtrl
         boolean sesionActiva = true;
 
         while (sesionActiva) {
@@ -98,13 +98,13 @@ public class App {
                     libraryCtrl.mostrarMenuBiblioteca(usuario);
                     break;
                 case 3:
-                    authCtrl.verPerfil(usuario);              // ✅ nuevo
+                    authCtrl.verPerfil(usuario);              //  nuevo
                     break;
                 case 4:
-                    authCtrl.cambiarContrasena(usuario);      // ✅ nuevo
+                    authCtrl.cambiarContrasena(usuario);      //  nuevo
                     break;
                 case 5:
-                    if (authCtrl.eliminarCuenta(usuario)) {   // ✅ nuevo
+                    if (authCtrl.eliminarCuenta(usuario)) {   //  nuevo
                         sesionActiva = false;
                     }
                 

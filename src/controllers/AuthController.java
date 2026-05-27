@@ -100,11 +100,11 @@ public class AuthController {
     // ── Perfil, cambiar contraseña y eliminar cuenta ───────────────────────────
 
     public void verPerfil(User usuario) {
-    Printer.titulo("👤 MI PERFIL");
+    Printer.titulo(" MI PERFIL");
     System.out.println("   Usuario      : " + usuario.getUsername());
     System.out.println("   Rol          : " + usuario.getRol());
     System.out.println("   Saldo        : $" + String.format("%.2f", usuario.getSaldo()));
-    // ✅ nuevo
+    //  nuevo
     String fecha = usuario.getUltimoLogin() != null ? usuario.getUltimoLogin() : "No disponible";
     System.out.println("   Último login : " + fecha);
     InputHelper.pausar();
