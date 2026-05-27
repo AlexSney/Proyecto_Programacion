@@ -186,7 +186,7 @@ public class Data {
             usuarioLogeado = null;
             return true;
         } else {
-            System.out.println("Eliminación de cuenta cancelada.");
+            System.out.println("Eliminación de cuenta cancelada");
             return false;
         }
     }
